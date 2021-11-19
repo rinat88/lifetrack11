@@ -7,14 +7,24 @@
     android:padding="12dp"
     tools:context=".fragment.CreateTaskFragment">
 
+<!--    <EditText-->
+<!--        android:id="@+id/task_ed"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:hint="Task"-->
+<!--        android:layout_marginTop="30dp"-->
+<!--        android:padding="12dp"-->
+<!--        android:background="@drawable/rectangle_background"-->
+<!--        android:textColor="@android:color/black"-->
+<!--        app:layout_constraintTop_toTopOf="parent"/>-->
     <EditText
         android:id="@+id/task_ed"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Task"
+        android:layout_marginTop="30dp"
         android:padding="12dp"
-        android:background="@drawable/rectangle_background"
-        android:textColor="@android:color/black"
+        android:textColor="@color/black"
         app:layout_constraintTop_toTopOf="parent"/>
 
     <TextView

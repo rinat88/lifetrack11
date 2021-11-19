@@ -12,6 +12,7 @@ import androidx.navigation.Navigation;
 
 import com.example.lifetrack1.R;
 import com.example.lifetrack1.databinding.FragmentHomeBinding;
+import com.example.lifetrack1.utils.Constants;
 
 public class HomeFragment extends Fragment {
     FragmentHomeBinding binding;
@@ -30,12 +31,14 @@ public class HomeFragment extends Fragment {
         binding.addFab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Navigation.findNavController(requireView()).navigate(R.id.createTaskFragment);
+                Navigation.findNavController(requireView()).navigate(R.id.action_homeFragment_to_createTaskFragment);
             }
         });
     }
 
     private void getData() {
-        if(getArguments()!=null);
+        if(getArguments()!=null){
+            String title = getArguments().getString(Constants.USER_TASK);
+        }
     }
 }

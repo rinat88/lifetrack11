@@ -9,10 +9,20 @@
         android:id="@+id/homeFragment"
         android:name="com.example.lifetrack1.fragment.HomeFragment"
         android:label="fragment_home"
-        tools:layout="@layout/fragment_home"/>
+        tools:layout="@layout/fragment_home">
+        <action
+            android:id="@+id/action_homeFragment_to_createTaskFragment"
+            app:destination="@id/createTaskFragment" />
+    </fragment>
     <fragment
         android:id="@+id/createTaskFragment"
         android:name="com.example.lifetrack1.fragment.CreateTaskFragment"
         android:label="fragment_create_task"
         tools:layout="@layout/fragment_create_task" />
+    <fragment
+        android:id="@+id/boardFragment"
+        android:name="com.example.lifetrack1.board.BoardFragment"
+        android:label="fragment_board"
+        tools:layout="@layout/fragment_board" />
+
 </navigation>
