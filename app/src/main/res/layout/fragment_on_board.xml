@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     tools:context=".board.OnBoardFragment">
 
@@ -11,8 +12,19 @@
         android:layout_width="match_parent"
         android:layout_height="600dp" />
 
+    <com.tbuonomo.viewpagerdotsindicator.DotsIndicator
+        android:id="@+id/dots_indicator"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:dotsColor="@color/material_white"
+        app:dotsCornerRadius="11dp"
+        app:dotsSize="20dp"
+        app:dotsSpacing="6dp"
+        app:dotsWidthFactor="2.5"
+        />
+
     <Button
-        android:id="@+id/continue_tv"
+        android:id="@+id/continue_Btn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Continue"

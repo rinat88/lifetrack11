@@ -15,6 +15,7 @@ public class BoardAdapter extends FragmentPagerAdapter {
         super(fm);
     }
 
+
     @NonNull
     @Override
     public Fragment getItem(int position) {
