@@ -256,6 +256,9 @@ public class CreateTaskFragment extends BottomSheetDialogFragment  implements Da
         alertDialog.show();
         RadioButton neverBtn = alertDialog.findViewById(R.id.never);
         RadioButton everyDayBtn = alertDialog.findViewById(R.id.every_day);
+        RadioButton every_month = alertDialog.findViewById(R.id.every_month);
+        RadioButton every_week = alertDialog.findViewById(R.id.every_week);
+        RadioButton every_year = alertDialog.findViewById(R.id.every_year);
         neverBtn.setOnClickListener(view1 -> {
             binding.repeatTv.setText(neverBtn.getText().toString());
             repeatCount = neverBtn.getText().toString();
@@ -266,6 +269,30 @@ public class CreateTaskFragment extends BottomSheetDialogFragment  implements Da
             public void onClick(View view) {
                 binding.repeatTv.setText(everyDayBtn.getText().toString());
                 repeatCount = everyDayBtn.getText().toString();
+                alertDialog.dismiss();
+            }
+        });
+        every_month.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                binding.repeatTv.setText(every_month.getText().toString());
+                repeatCount = every_month.getText().toString();
+                alertDialog.dismiss();
+            }
+        });
+        every_week.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                binding.repeatTv.setText(every_week.getText().toString());
+                repeatCount = every_week.getText().toString();
+                alertDialog.dismiss();
+            }
+        });
+        every_year.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                binding.repeatTv.setText(every_year.getText().toString());
+                repeatCount = every_year.getText().toString();
                 alertDialog.dismiss();
             }
         });
