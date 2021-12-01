@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.lifetrack1.OnLongItemListener;
 import com.example.lifetrack1.R;
 import com.example.lifetrack1.databinding.ItemTaskBinding;
 import com.example.lifetrack1.model.TaskModel;
@@ -16,17 +17,17 @@ import java.util.ArrayList;
 public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder> {
     ArrayList<TaskModel> list;
     ItemTaskBinding binding;
-    Listener listener;
+    OnLongItemListener listener ;
     boolean isFillDay;
 
-    public TaskAdapter(ArrayList<TaskModel> list, Listener listener) {
+
+
+    public TaskAdapter(ArrayList<TaskModel> list, OnLongItemListener listener) {
         this.list = list;
         this.listener = listener;
     }
 
-    public TaskAdapter(ArrayList<TaskModel> taskModels) {
-        this.list = taskModels;
-    }
+
 
     @NonNull
     @Override
@@ -52,17 +53,27 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
         public TaskViewHolder(@NonNull ItemTaskBinding binding) {
             super(binding.getRoot());
         }
+
         public void onFill(TaskModel model){
             binding.taskTv.setText(model.getTask());
             binding.deadlineTv.setText(model.getDeadline());
             binding.repeatTv.setText(model.getRepeatCount());
+            itemView.setOnLongClickListener(new View.OnLongClickListener() {
+                @Override
+                public boolean onLongClick(View view) {
+                    listener.itemLongClick(model);
+                    return true;
+                }
+            });
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    listener.itemClick(model);
+                }
+            });
         }
     }
 
-    public interface Listener {
-        void itemLongClick(TaskModel taskModel);
 
-        void itemClick(TaskModel model);
-    }
 }
 
