@@ -182,7 +182,6 @@ public class CreateTaskFragment extends BottomSheetDialogFragment  implements Da
     private int startYear;
     private int starthMonth;
     private int startDay;
-    TaskModel taskModel;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -199,28 +198,28 @@ public class CreateTaskFragment extends BottomSheetDialogFragment  implements Da
     }
 
     private void fillDialog() {
-//        if (getTag().equals(Constants.UPDATE)) {
-//            TaskModel taskModel = (TaskModel) getArguments().getSerializable(Constants.UPDATE_MODEL);
-//
-//            deadline = taskModel.getDeadline();
-//            userTask = taskModel.getTask();
-//            repeatCount = taskModel.getRepeatCount();
-//
-//            binding.taskEd.setText(userTask);
-//            binding.dateTv.setText(deadline);
-//            binding.repeatTv.setText(repeatCount);
-//        }
+        if (getTag().equals(Constants.UPDATE)) {
+            TaskModel taskModel = (TaskModel) getArguments().getSerializable(Constants.UPDATE_MODEL);
+
+            deadline = taskModel.getDeadline();
+            userTask = taskModel.getTask();
+            repeatCount = taskModel.getRepeatCount();
+
+            binding.taskEd.setText(userTask);
+            binding.dateTv.setText(deadline);
+            binding.repeatTv.setText(repeatCount);
+        }
     }
 
     private void initClickers() {
         binding.addBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                if (getTag().equals(Constants.UPDATE)) {
-//                    updateTask();
-//                } else {
+                if (getTag().equals(Constants.UPDATE)) {
+                    updateTask();
+                } else {
                     insertTask();
-                //}
+                }
             }
         });
         binding.dateTv.setOnClickListener(new View.OnClickListener() {
@@ -256,14 +255,21 @@ public class CreateTaskFragment extends BottomSheetDialogFragment  implements Da
         alertDialog.setContentView(view);
         alertDialog.show();
         RadioButton neverBtn = alertDialog.findViewById(R.id.never);
-        neverBtn.setOnClickListener(new View.OnClickListener() {
+        RadioButton everyDayBtn = alertDialog.findViewById(R.id.every_day);
+        neverBtn.setOnClickListener(view1 -> {
+            binding.repeatTv.setText(neverBtn.getText().toString());
+            repeatCount = neverBtn.getText().toString();
+            alertDialog.dismiss();
+        });
+        everyDayBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                binding.repeatTv.setText(neverBtn.getText().toString());
-                repeatCount = neverBtn.getText().toString();
+                binding.repeatTv.setText(everyDayBtn.getText().toString());
+                repeatCount = everyDayBtn.getText().toString();
                 alertDialog.dismiss();
             }
         });
+
     }
 
     private void showDialog() {
@@ -289,15 +295,14 @@ public class CreateTaskFragment extends BottomSheetDialogFragment  implements Da
     }
 
     private void insertTask() {
-//        if (checkDay()){
-//            ArrayList<TaskModel> list = new ArrayList<>();
-//            TaskAdapter taskAdapter = new TaskAdapter(list,null);
-//            taskAdapter.setFillDayTrue(true);
-//        }
+        if (checkDay()){
+            ArrayList<TaskModel> list = new ArrayList<>();
+            TaskAdapter taskAdapter = new TaskAdapter(list,null);
+            taskAdapter.setFillDayTrue(true);
+        }
         userTask = binding.taskEd.getText().toString();
         TaskModel taskModel = new TaskModel(userTask, deadline, repeatCount);
         App.getInstance().getDatabase().taskDao().insert(taskModel);
-        Navigation.findNavController(requireView()).navigate(R.id.homeFragment);
         dismiss();
     }
 

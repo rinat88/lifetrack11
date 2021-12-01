@@ -40,19 +40,20 @@ public class HomeFragment extends Fragment {
         binding.addFab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Navigation.findNavController(requireView()).navigate(R.id.action_homeFragment_to_createTaskFragment);
+                CreateTaskFragment createTaskFragment = new CreateTaskFragment();
+                createTaskFragment.show(requireActivity().getSupportFragmentManager(), "ololo");
             }
         });
-       // initRecycler();
+        initRecycler();
     }
 
-//    private void initRecycler() {
-//        App.getInstance().getDatabase().taskDao().getAll().observe(getViewLifecycleOwner(),taskModels -> {
-//            TaskAdapter taskAdapter = new TaskAdapter((ArrayList<TaskModel>)taskModels);
-//            binding.taskRecycler.setAdapter(taskAdapter);
-//        });
-//
-//    }
+    private void initRecycler() {
+        App.getInstance().getDatabase().taskDao().getAll().observe(getViewLifecycleOwner(),taskModels -> {
+            TaskAdapter taskAdapter = new TaskAdapter((ArrayList<TaskModel>)taskModels);
+            binding.taskRecycler.setAdapter(taskAdapter);
+        });
+
+    }
 
 
     private void getData() {
